@@ -1,0 +1,29 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: {{ .Values.appName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    app: {{ .Values.appName }}
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - {{ .Values.appName }}
+        from:
+          kind: ImageStreamTag
+          name: {{ .Values.appName }}:latest
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.appName }}
+          image: {{ .Values.appName }}:latest
+          ports:
+            - containerPort: {{ .Values.containerPort }}

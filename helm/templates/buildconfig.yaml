@@ -1,0 +1,28 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: {{ .Values.appName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  source:
+    type: Git
+    git:
+      uri: "{{ .Values.git.repo }}"
+      ref: "{{ .Values.git.ref }}"
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: "{{ .Values.builderImage }}"
+        namespace: openshift
+  output:
+    to:
+      kind: ImageStreamTag
+      name: "{{ .Values.appName }}:latest"
+  triggers:
+    - type: GitHub
+      github:
+        secret: "{{ .Values.git.webhookSecret }}"
+    - type: ConfigChange
+    - type: ImageChange

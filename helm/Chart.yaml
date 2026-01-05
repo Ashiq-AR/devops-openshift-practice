@@ -1,0 +1,6 @@
+apiVersion: v2
+name: my-app
+description: A Helm chart for deploying a S2I OpenShift app with auto-rollout
+type: application
+version: 0.1.0
+appVersion: "1.0"
