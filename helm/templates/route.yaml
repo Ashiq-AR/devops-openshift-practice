@@ -8,6 +8,4 @@ spec:
     kind: Service
     name: {{ .Values.appName }}
   port:
-    targetPort: {{ .Values.servicePort }}
-  tls:
-    termination: {{ .Values.route.tls }}
+    targetPort: {{ .Values.containerPort }}

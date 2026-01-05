@@ -9,16 +9,16 @@ serviceAccount:
 
 # GitHub repository
 git:
-  repo: https://github.com/example/my-app.git
+  repo: https://github.com/Ashiq-AR/devops-openshift-practice.git
   ref: main
   webhookSecret: github-webhook-secret
 
 # S2I builder image
-builderImage: nodejs:18
+builderImage: nodejs:latest
 
 # Deployment/DeploymentConfig
 replicas: 2
-containerPort: 8080
+containerPort: 3000
 
 # Service
 service:
