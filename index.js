@@ -11,7 +11,7 @@ let messages = [
 ];
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the Express Messages App');
+  res.send('Welcome to the Express Messages App. This app is updated');
 });
 
 app.get('/messages', (req, res) => {
