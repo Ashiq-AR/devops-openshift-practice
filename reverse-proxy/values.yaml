@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: "1.25"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 83
+
+frontend:
+  serviceName: my-frontend
+  servicePort: 81
+
+backend:
+  serviceName: my-backend
+  servicePort: 8080
+
+ingress:
+  enabled: true
+  className: nginx
+  host: nginx-proxy.apps.rm1.0a51.p1.openshift.com
+  path: /
