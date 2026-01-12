@@ -22,6 +22,8 @@ COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
+RUN chmod -R g+rX /usr/share/nginx/html
+
 EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]
