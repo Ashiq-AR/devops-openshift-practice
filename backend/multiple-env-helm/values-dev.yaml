@@ -1,0 +1,5 @@
+namespace: dev
+
+env:
+  name: development
+  welcomeMessage: "Welcome to the Development Environment!"

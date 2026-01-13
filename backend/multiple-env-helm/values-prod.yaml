@@ -1,0 +1,5 @@
+namespace: prod
+
+env:
+  name: production
+  welcomeMessage: "Welcome to the Production Environment!"

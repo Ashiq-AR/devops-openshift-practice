@@ -1,0 +1,5 @@
+namespace: stg
+
+env:
+  name: staging
+  welcomeMessage: "Welcome to the Staging Environment!"
