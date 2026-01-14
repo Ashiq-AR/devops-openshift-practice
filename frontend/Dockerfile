@@ -1,28 +1,26 @@
-# Stage 1: Build image
-
+# Stage 1: Build
 FROM node:20-alpine AS builder
 
 WORKDIR /app
-
-COPY package*.json .
-
+COPY package*.json ./
 RUN npm ci
-
 COPY . .
 
 RUN chmod +x node_modules/.bin/*
 
 RUN npm run build
 
-# Stage 2: Run the build
-
+# Stage 2: Runtime
 FROM registry.redhat.io/ubi9/nginx-120
 
-COPY nginx.conf /etc/nginx/conf.d/nginx.conf
+# Main nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
 
+# Server block
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+# Just copy files – do NOT chmod/chgrp
 COPY --from=builder /app/dist /usr/share/nginx/html
-
-RUN chmod -R g+rX /usr/share/nginx/html
 
 EXPOSE 8080
 
